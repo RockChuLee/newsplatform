@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入抽取的topbar-->
+<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+<div th:replace="commons/baradmin::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入侧边栏-->
+        <div th:replace="commons/baradmin::#sidebar(activeUri='userinfo')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <form th:action="@{/userinfo}">
+
+                <div class="form-group">
+                    <label>ID：</label>
+                    <p th:text="${userinfo.id}">
+                    </p>
+                    <input type="hidden" name="id" th:value="${userinfo.id}"/>
+                </div>
+                <div class="form-group">
+                    <label>UserID：</label>
+                    <p th:text="${userinfo.userId}">
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input name="userUsername" type="text" class="form-control" placeholder="请输入用户名"
+                           th:value="${userinfo.userUsername}">
+                </div>
+                <div class="form-group">
+                    <label>性别</label><br/>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" value="1"
+                               th:checked="${userinfo.sex}==1">
+                        <label class="form-check-label">男</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" value="0"
+                               th:checked="${userinfo.sex}==0">
+                        <label class="form-check-label">女</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>生日</label>
+                    <input name="birthday" type="text" class="form-control" placeholder="请以2014-7-10 00:00的格式输入生日"
+                           th:value="${#dates.format(userinfo.birthday, 'yyyy-MM-dd HH:mm')}">
+                </div>
+
+                <div class="form-group">
+                    <label>住址</label>
+                    <input class="form-control" name="address" type="text" placeholder="请输入家庭住址"
+                           th:value="${userinfo.address}"/>
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="修改">#</button>
+            </form>
+
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    feather.replace()
+</script>
+
+</body>
+
+</html>

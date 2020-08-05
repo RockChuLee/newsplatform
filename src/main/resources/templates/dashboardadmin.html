@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--引入topbar-->
+<div th:replace="commons/baradmin::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入sidebar-->
+        <div th:replace="commons/baradmin::#sidebar(activeUri='main.html')"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h3>天津科技大学校园新闻系统</h3>
+            <hr/>
+            <p>
+                <font color="red">天津科技大学校园新闻系统</font>是由<b><i>2020届本科毕业生董浩</i></b>此系统是基于Java
+                EE的校园新闻平台，整体构架采用前后端分离方式来做，易于多端管理。在后台方面选择以springboot
+                为主微服务架构，整合Spring、SpringMvc、Mybatis，实现了后台对整个系统的全方位管理，包括普通用户的注册、登录，新闻资讯信息的编辑、修改与发布，以及管理员对新闻资讯信息监管、完善与审核等一系列操作。在数据库方面选择MySQL作为数据库，mybatis
+                plus+Druid 简化多源数据库的配置以及数据库操作，redis
+                作为关系型数据库的补充，高效处理部分缓存类数据。在前台方面，Web页面的展示采用易于HTML5+CSS3的Bootstrap技术，
+                Bootstrap是一套前端框架，简洁方便，使得Web开发更加方便快捷，实现了普通用户的注册、登录，完善个人信息，快速浏览、功能分类、信息交互等功能。
+            </p>
+            <hr/>
+            <h3>管理员准则</h3>
+            <hr/>
+            <p>    《中国图书馆员职业道德准则(试行)》是以中共中央颁布的《公民道德建设实施纲要》为指导,总结我国图书馆活动的实践经验,为履行图书馆承担的社会职责而制定的行业自律规范。中国图书馆学会六届四次理事会2002年11月15日通过。
+                这是我国第一个超越地域、馆种类型、馆属系统的界限,把全国的图书馆员和信息服务从业人员作为一个整体来构筑其职业道德规范的指导性文件,是“
+                依法治国”和“以德治国”在中国图书馆事业中的具体体现。它的颁布,标志着中国图书馆员职业道德建设发展到了一个新阶段,添补了我国图书馆界的一项空白。
+			</p>
+			<p> 《准则》结合图书馆员的职业特点,将图书馆员的职业观念、职业态度、职业技能、职业纪律和职业作风作了全面的概括。《准则》的颁布,有助于促进图书馆法及相关法规的制定;有助于全面提高从业人员的思想道德和科学文化素质,提升服务水平,使图书馆工作更加科学规范,优质高效;有助于增强图书馆员的社会责任感和团队意识,树立良好的职业形象;有助于以开放、合作、共享的理念,大力加强与社会各界的协作,让社会了解图书馆,增强公众的图书馆意识,充分实现图书馆员和图书馆的社会价值。
+            </p>
+            <p>确立职业观念,履行社会职责。 适应时代需求,勇于开拓创新。</p>
+            <p>真诚服务读者,文明热情便捷。 维护读者权益,保守读者秘密。</p>
+            <p>尊重知识产权,促进信息传播。 爱护文献资源,规范职业行为。</p>
+            <p>努力钻研业务,提高专业素养。 发扬团队精神,树立职业形象。</p>
+            <p>实践馆际合作,推进资源共享。 拓展社会协作,共建社会文明。</p>
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/asserts/js/Chart.min.js}"></script>
+
+
+</body>
+
+</html>

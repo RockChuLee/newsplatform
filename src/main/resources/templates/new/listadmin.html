@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+
+        table td{
+
+            overflow: hidden;
+
+            text-overflow:ellipsis;
+
+            white-space: nowrap;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<!--引入抽取的topbar-->
+<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+<div th:replace="commons/baradmin::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入侧边栏-->
+        <div th:replace="commons/baradmin::#sidebar(activeUri='news')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <div class="table-responsive">
+                <table class="table table-striped table-sm" style="word-wrap:break-word;word-break:break-all;table-layout:fixed;">
+                    <thead>
+                    <tr>
+                        <th style="width:5%;">#</th>
+                        <th style="width:5%;">用户ID</th>
+                        <th style="width:5%;">作者</th>
+                        <th style="width:15%;">标题</th>
+                        <th style="width:5%;">种类</th>
+                        <th style="width:15%;">创作时间</th>
+                        <th style="width:20%;">内容</th>
+                        <th style="width:5%;">点击率</th>
+                        <th style="width:5%;">浏览量</th>
+                        <th style="width:5%;">权限</th>
+                        <th style="width:15%;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="temp:${news}">
+
+                        <td th:text="${temp.id}"></td>
+                        <td th:text="${temp.userId}"></td>
+                        <td th:text="${temp.userUsername}"></td>
+                        <td th:text="${temp.title}"></td>
+                        <td th:text="${temp.category}"></td>
+                        <td th:text="${#dates.format(temp.createtime, 'yyyy-MM-dd HH:mm')}" onfocus=""></td>
+                        <td th:text="${temp.content}"></td>
+                        <td th:text="${temp.clickRate}"></td>
+                        <td th:text="${temp.pageView}"></td>
+                        <td th:text="${temp.permission}"></td>
+
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                    th:attr="pass_uri = @{/admin/news/pass/}+${temp.id}" >审核
+                            </button>
+                            <button class="btn btn-sm btn-danger deleteBtn"
+                                    th:attr="unpass_uri = @{/admin/news/unpass/}+${temp.id}" >撤销
+                            </button>
+                            <a href="#" th:href="@{/admin/newsdetail/}+${temp.id}" class="btn btn-sm btn-success">详细</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <form id="passNewsForm" method="get">
+            <input type="hidden" />
+        </form>
+        <form id="unpassNewsForm" method="get">
+            <input type="hidden" />
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    $(".btn-primary").click(function () {
+        //审核
+        $("#passNewsForm").attr("action", $(this).attr("pass_uri")).submit();
+        return false;
+    });
+</script>
+<script>
+    $(".deleteBtn").click(function () {
+        //下架
+        $("#unpassNewsForm").attr("action", $(this).attr("unpass_uri")).submit();
+        return false;
+    });
+</script>
+</body>
+</html>

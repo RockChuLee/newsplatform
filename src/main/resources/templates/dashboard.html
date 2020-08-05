@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+    <script>
+        /* 当页面加载完成的时候, 动态切换图片
+             1.确定事件:
+             2.事件所要触发的函数
+         */
+        var index = 1;
+
+        //切换图片的函数
+        function changeAd() {
+
+            //获取要操作的img
+            var img = document.getElementById("imgAd");
+            //asserts/images/TUST1.JPG
+            img.src = "asserts/images/TUST" + (index % 3 + 1) + ".JPG";  //0,1,2    //1,2,3
+            index++;
+        }
+
+        function init() {
+            //启动定时器
+
+            setInterval("changeAd()", 3000);
+        }
+    </script>
+</head>
+
+<body onload="init()">
+<!--引入topbar-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入sidebar-->
+        <div th:replace="commons/bar::#sidebar(activeUri='main.html')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!--主页简介-->
+            <h3>天津科技大学校园新闻系统</h3>
+            <hr/>
+            <p>
+                <font color="red">天津科技大学校园新闻系统</font>是由<b><i>2020届本科毕业生董浩</i></b>此系统是基于Java
+                EE的校园新闻平台，整体构架采用前后端分离方式来做，易于多端管理。在后台方面选择以springboot
+                为主微服务架构，整合Spring、SpringMvc、Mybatis，实现了后台对整个系统的全方位管理，包括普通用户的注册、登录，新闻资讯信息的编辑、修改与发布，以及管理员对新闻资讯信息监管、完善与审核等一系列操作。在数据库方面选择MySQL作为数据库，mybatis
+                plus+Druid 简化多源数据库的配置以及数据库操作，redis
+                作为关系型数据库的补充，高效处理部分缓存类数据。在前台方面，Web页面的展示采用易于HTML5+CSS3的Bootstrap技术，
+                Bootstrap是一套前端框架，简洁方便，使得Web开发更加方便快捷，实现了普通用户的注册、登录，完善个人信息，快速浏览、功能分类、信息交互等功能。
+            </p>
+            <hr/>
+            <!--轮播图-->
+            <img width="100%" src="asserts/images/TUST1.JPG" id="imgAd">
+
+            <hr/>
+
+            <div align="center">
+                特别鸣谢<a href="http://www.tust.edu.cn/">天津科技大学</a>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/asserts/js/Chart.min.js}"></script>
+
+
+</body>
+
+</html>
